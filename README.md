@@ -2,11 +2,6 @@
 
 The website for [Invaris Labs](https://github.com/invarislabs): security infrastructure for autonomous AI agents.
 
-It's a single-page Next.js site presenting the two open-source projects:
-
-- **[AgentSec](https://github.com/invarislabs/invaris-agentsec)**: adversarial security and reliability testing for AI agents.
-- **[AgentAuth](https://github.com/invarislabs/agent-auth)**: cryptographic identity and delegated authorization for agents.
-
 ## Stack
 
 - Next.js 16 (App Router, fully static prerender)
@@ -19,7 +14,7 @@ It's a single-page Next.js site presenting the two open-source projects:
 
 ```bash
 npm install
-npm run dev        # http://localhost:3000
+npm run dev
 ```
 
 | Script | What it does |
@@ -51,9 +46,3 @@ public/
   brand/               Invaris Labs logo (original) and mark crop
   og.png               1200×630 social card
 ```
-
-## Content rules
-
-All product claims, commands, terminal output and code snippets come from the AgentSec and AgentAuth READMEs. When a command's output isn't printed in a README, the terminal shows a `#` comment describing the documented behaviour instead of made-up output. If you change the website copy, check it against the project READMEs first.
-
-Outbound links live in `src/lib/site.ts`.
