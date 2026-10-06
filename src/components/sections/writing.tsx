@@ -5,6 +5,14 @@ import { Container, ExternalLink, SectionHeader } from "@/components/ui/primitiv
 const articles = [
   {
     kind: "Guide",
+    title: "Allowed Isn't Authorized: Testing What Your AI Agent Does With the Permissions It Already Has",
+    description:
+      "A hands-on guide to AgentSec 0.7's authority checks: did the task authorize this effect, where did private data go, did the agent's report match its trace, whose resource did it touch, and which agent acted on whose authority.",
+    topics: ["tool_effects", "Multi-agent", "AgentSec 0.7"],
+    href: "https://arunima-chaudhuri.hashnode.dev/allowed-isn-t-authorized-testing-what-your-ai-agent-does-with-the-permissions-it-already-has",
+  },
+  {
+    kind: "Guide",
     title: "AgentSec 101: How to Stop Your AI Agent From Going Rogue — A Beginner to Pro Guide",
     description:
       "A hands-on walkthrough from installing AgentSec and attacking a deliberately vulnerable practice agent, to writing a policy for your own agent, then on to replay, regression comparison, GitHub Actions, model-assisted judging and MCP server scanning.",
@@ -40,7 +48,7 @@ export function Writing() {
           </ExternalLink>
         </div>
 
-        <ul className="mt-14 grid gap-4 lg:grid-cols-2">
+        <ul className="mt-14 grid gap-4 lg:grid-cols-3">
           {articles.map((a, i) => (
             <li key={a.href} className="reveal" style={{ ["--reveal-delay" as string]: `${i * 90}ms` }}>
               <article className="group relative flex h-full flex-col rounded-2xl border border-line bg-ink-900/40 p-6 transition-colors duration-200 hover:border-line-strong hover:bg-ink-900/80 sm:p-8">
@@ -51,7 +59,7 @@ export function Writing() {
                     className="size-4 text-fg-subtle transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-fg"
                   />
                 </div>
-                <h3 className="mt-5 text-balance text-xl font-semibold leading-snug tracking-tight text-fg sm:text-[1.4rem]">
+                <h3 className="mt-5 text-balance text-xl font-semibold leading-snug tracking-tight text-fg sm:text-[1.3rem]">
                   <ExternalLink href={a.href} className="after:absolute after:inset-0 after:rounded-2xl focus-visible:outline-none">
                     {a.title}
                   </ExternalLink>
@@ -69,7 +77,7 @@ export function Writing() {
                     Read article <ArrowUpRight className="size-3.5" />
                   </span>
                 </div>
-                <p className="mt-4 font-mono text-[11px] text-fg-subtle">Arunima Chaudhuri · arunima-chaudhuri.hashnode.dev</p>
+                <p className="mt-4 font-mono text-[11px] text-fg-subtle">Arunima Chaudhuri · Hashnode</p>
               </article>
             </li>
           ))}
