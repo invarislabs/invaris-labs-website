@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/* Design tokens                                                       */
+/* Base ink matches the logo background (#000614) so the brand mark    */
+/* sits on the page without a visible edge.                            */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-ink-950: #000614;
+  --color-ink-900: #040b1b;
+  --color-ink-850: #071026;
+  --color-ink-800: #0b1530;
+  --color-ink-700: #13203f;
+
+  --color-fg: #e8edf6;
+  --color-fg-muted: #a3adc2;
+  --color-fg-subtle: #7a86a0;
+
+  --color-line: rgb(148 163 184 / 0.12);
+  --color-line-strong: rgb(148 163 184 / 0.22);
+
+  --color-brand-cyan: #5ee7f9;
+  --color-brand-sky: #38bdf8;
+  --color-brand-blue: #4f7bff;
+  --color-brand-indigo: #6d5efc;
+  --color-brand-violet: #b07bff;
+
+  --color-sev-critical: #fb7185;
+  --color-sev-high: #fb923c;
+  --color-sev-medium: #fbbf24;
+  --color-ok: #4ade80;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --animate-flow: flow 2.8s linear infinite;
+  --animate-flow-y: flow-y 2.8s linear infinite;
+  --animate-caret: caret 1.1s steps(1) infinite;
+  --animate-drift: drift 18s ease-in-out infinite alternate;
+  --animate-enter: enter 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes flow {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(400%); }
+  }
+  @keyframes flow-y {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(400%); }
+  }
+  @keyframes caret {
+    0%, 50% { opacity: 1; }
+    50.01%, 100% { opacity: 0; }
+  }
+  @keyframes enter {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes drift {
+    from { transform: translate3d(-4%, 0, 0) scale(1); }
+    to { transform: translate3d(4%, 2%, 0) scale(1.06); }
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    background: var(--color-ink-950);
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-ink-950);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: rgb(79 123 255 / 0.4);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-cyan);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  .text-gradient {
+    background-image: linear-gradient(
+      100deg,
+      var(--color-brand-violet) 0%,
+      var(--color-brand-blue) 38%,
+      var(--color-brand-cyan) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hairline-gradient {
+    background-image: linear-gradient(
+      90deg,
+      transparent,
+      rgb(176 123 255 / 0.5),
+      rgb(79 123 255 / 0.6),
+      rgb(94 231 249 / 0.5),
+      transparent
+    );
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, rgb(148 163 184 / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(148 163 184 / 0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-fg-subtle);
+  }
+
+  /* Section entrance: hidden only when JS is running and motion is OK. */
+  @media (prefers-reduced-motion: no-preference) {
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      transition:
+        opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+        transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+    .js .reveal[data-visible="true"] {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Code tokens */
+  .tok-comment { color: #7a86a0; }
+  .tok-string { color: #7dd3fc; }
+  .tok-keyword { color: #c4b5fd; }
+  .tok-cmd { color: #5ee7f9; }
+  .tok-flag { color: #93c5fd; }
+  .tok-number { color: #f0abfc; }
+  .tok-key { color: #a5b4fc; }
+  .tok-punct { color: #7a86a0; }
+  .tok-fn { color: #e8edf6; }
+}
