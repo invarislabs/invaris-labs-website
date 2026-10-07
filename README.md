@@ -64,11 +64,11 @@ Most changes don't touch layout code:
 | Links (GitHub, socials, docs, contact) | `src/lib/site.ts` |
 | AgentSec commands, terminal output, policy, check categories | `src/content/agentsec.ts` |
 | AgentAuth flow, limits, comparison table, code snippets | `src/content/agentauth.ts` |
-| Articles in the Writing section | the `articles` array in `src/components/sections/writing.tsx` |
+| Articles in the Writing section | `src/content/writing.ts` |
 | Page title, description, social card text | `src/app/layout.tsx` and `public/og.png` |
 | Colours, fonts, motion | the `@theme` block in `src/app/globals.css` |
 
-**Adding an article:** add an object (`kind`, `title`, `description`, `topics`, `href`) to `articles` in `writing.tsx`. The grid adjusts itself.
+**Adding an article:** add an object (`kind`, `title`, `description`, `topics`, `href`) to the top of `articles` in `src/content/writing.ts`, so the newest comes first. Write the description from the article itself. The grid is two columns, so an even number of articles fills it cleanly.
 
 **Accuracy:** product claims, commands and snippets on the site are taken from the AgentSec and AgentAuth READMEs. Check new copy against those READMEs so the site never describes a feature that isn't built.
 
@@ -88,7 +88,7 @@ src/
     sections/           one file per section: hero, products, agentsec,
                         agentauth, stack, writing, about, founder, open-source
     ui/                 buttons, code blocks and tabs, icons, client helpers
-  content/              AgentSec and AgentAuth copy and snippets
+  content/              AgentSec and AgentAuth copy and snippets, and the article list
   lib/
     site.ts             site constants and every outbound link
     highlight.tsx       small server-side syntax highlighter

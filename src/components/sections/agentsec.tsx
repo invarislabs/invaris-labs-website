@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { links } from "@/lib/site";
+import { passResearchHref } from "@/content/writing";
 import {
   checkGroups,
   facts,
@@ -122,7 +123,14 @@ export function AgentSec() {
             <span className="text-fg-muted">not observable</span>, never as passed. Unauthorized financial and
             on-chain actions are covered by a bundled attack pack and the policy&apos;s{" "}
             <Mono className="text-fg-muted">spend_limits</Mono> /{" "}
-            <Mono className="text-fg-muted">address_allowlist</Mono>.
+            <Mono className="text-fg-muted">address_allowlist</Mono>.{" "}
+            <ExternalLink
+              href={passResearchHref}
+              className="text-fg-muted underline decoration-line-strong underline-offset-4 hover:text-fg hover:decoration-fg"
+            >
+              What a passing test does and doesn&apos;t prove
+            </ExternalLink>
+            .
           </p>
         </div>
 
