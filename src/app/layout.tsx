@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   keywords: [
     "AI agent security",
     "agent security testing",
+    "agent security research",
+    "AI agent benchmarks",
     "prompt injection",
     "MCP security",
     "agent identity",
