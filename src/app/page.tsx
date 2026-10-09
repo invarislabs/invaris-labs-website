@@ -7,6 +7,7 @@ import { AgentSec } from "@/components/sections/agentsec";
 import { AgentAuth } from "@/components/sections/agentauth";
 import { SecurityStack } from "@/components/sections/stack";
 import { Writing } from "@/components/sections/writing";
+import { Community } from "@/components/sections/community";
 import { About } from "@/components/sections/about";
 import { Founder } from "@/components/sections/founder";
 import { OpenSource } from "@/components/sections/open-source";
@@ -29,6 +30,7 @@ export default function Home() {
         <AgentAuth />
         <SecurityStack />
         <Writing />
+        <Community />
         <About />
         <Founder />
         <OpenSource />
