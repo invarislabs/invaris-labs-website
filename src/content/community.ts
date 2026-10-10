@@ -20,6 +20,29 @@ export const sources = {
 
 export type Platform = keyof typeof sources;
 
+/**
+ * A post that resonated, shown above the carousel. Engagement numbers are a
+ * snapshot: update them (and `asOf`) together, never one without the other.
+ */
+export const highlight = {
+  href: "https://x.com/arunimastwt/status/2108714123060281473",
+  author: { name: "Arunima Chaudhuri", handle: "@arunimastwt" },
+  postedOn: "10 Oct 2026",
+  text: [
+    "The scariest AI agent attack? One where nothing gets hacked.",
+    "No stolen credentials. No broken permissions.",
+    "Just an AI agent using tools it's already allowed to access — to do something it shouldn't.",
+    "That's what we're testing with AgentSec.",
+  ],
+  asOf: "11 Oct 2026",
+  stats: [
+    { label: "Bookmarks", value: "31", emphasis: true },
+    { label: "Views", value: "1,576" },
+    { label: "Likes", value: "32" },
+    { label: "Reposts", value: "5" },
+  ],
+} as const;
+
 export type Thread = {
   platform: Platform;
   /** Short label for what the exchange is about. */
@@ -28,6 +51,8 @@ export type Thread = {
   text: string;
   /** Arunima's reply, if the exchange includes one worth showing. */
   reply?: string;
+  /** Direct link to this exchange, if it lives outside the platform's main thread. */
+  href?: string;
 };
 
 export const threads: readonly Thread[] = [
@@ -38,6 +63,15 @@ export const threads: readonly Thread[] = [
     text: "Nice, testing agents the way an attacker would is overdue. One request: tag each finding with the tool call and arguments that triggered it. That turns a failed test into a rule you can enforce at the call, and lets you re-run to prove the fix holds.",
     reply:
       "It already does. Every finding carries the exact trace events behind it: tool name, arguments, sequence number. `agentsec replay` re-runs just that finding against the fixed agent to prove the fix holds. Enforcing it at call time is the runtime half we're prototyping now.",
+  },
+  {
+    platform: "x",
+    topic: "Correct tool, wrong intent",
+    author: { name: "Animesh Shaw", handle: "@animesh_infosec" },
+    text: "This is the category classic threat modeling completely misses — CVE-style frameworks assume the vulnerability is in the code, not in a decision the agent was authorized to make. ‘Correct tool, wrong intent’ isn’t a permissions bug, RBAC can’t see it.",
+    reply:
+      "Exactly. The tool call is valid, the permission exists, the code has no bug. What’s wrong is that this task never authorized it. You can only catch that by comparing what the agent did against what the user actually asked for, per task, not per role.",
+    href: "https://x.com/animesh_infosec/status/2108920682344227060",
   },
   {
     platform: "x",
