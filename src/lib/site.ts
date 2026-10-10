@@ -66,5 +66,6 @@ export const nav = [
   { label: "AgentSec", href: "#agentsec" },
   { label: "AgentAuth", href: "#agentauth" },
   { label: "Writing", href: "#writing" },
+  { label: "Community", href: "#community" },
   { label: "About", href: "#about" },
 ] as const;
