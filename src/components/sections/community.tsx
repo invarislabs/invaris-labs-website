@@ -1,4 +1,5 @@
-import { sources, threads, type Platform } from "@/content/community";
+import { highlight, sources, threads, type Platform } from "@/content/community";
+import { cx } from "@/components/ui/primitives";
 import { ArrowUpRight, XIcon } from "@/components/ui/icons";
 import { Inline } from "@/components/ui/inline";
 import { Carousel } from "@/components/ui/carousel";
@@ -49,7 +50,56 @@ export function Community() {
           </ul>
         </div>
 
-        <div className="reveal mt-14">
+
+        <figure className="reveal mt-14 grid gap-8 rounded-2xl border border-line bg-gradient-to-br from-ink-900 to-ink-950 p-6 sm:p-8 lg:grid-cols-[1.3fr_1fr] lg:items-center">
+          <div>
+            <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-brand-cyan/90">
+              <XIcon className="size-3" />
+              <span>Post that resonated</span>
+            </div>
+            <blockquote cite={highlight.href} className="mt-4 space-y-2">
+              <p className="text-xl font-semibold leading-snug tracking-tight text-fg sm:text-2xl">{highlight.text[0]}</p>
+              {highlight.text.slice(1).map((line) => (
+                <p key={line} className="leading-relaxed text-fg-muted">
+                  {line}
+                </p>
+              ))}
+            </blockquote>
+            <figcaption className="mt-4 text-sm text-fg-muted">
+              {highlight.author.name}
+              <span className="ml-1.5 font-mono text-[12px] text-fg-subtle">{highlight.author.handle}</span>
+              <span className="text-fg-subtle"> · {highlight.postedOn}</span>
+            </figcaption>
+          </div>
+          <div>
+            <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line">
+              {highlight.stats.map((st) => (
+                <div
+                  key={st.label}
+                  className={cx("bg-ink-950 p-4 sm:p-5", "emphasis" in st && st.emphasis && "bg-brand-cyan/[0.06]")}
+                >
+                  <dt className="font-mono text-[11px] uppercase tracking-[0.12em] text-fg-subtle">{st.label}</dt>
+                  <dd
+                    className={cx(
+                      "mt-1 text-2xl font-semibold tabular-nums tracking-tight sm:text-3xl",
+                      "emphasis" in st && st.emphasis ? "text-brand-cyan" : "text-fg",
+                    )}
+                  >
+                    {st.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-3 flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] text-fg-subtle">
+              <span>As of {highlight.asOf}</span>
+              <ExternalLink href={highlight.href} className="inline-flex items-center gap-1 text-fg-muted hover:text-fg">
+                View post on X <ArrowUpRight className="size-3.5" />
+              </ExternalLink>
+            </p>
+          </div>
+        </figure>
+
+        <div className="reveal mt-10">
           <Carousel
             label="Community questions about AgentSec"
             slides={threads.map((t) => (
@@ -60,7 +110,7 @@ export function Community() {
                   </div>
 
                   <figure className="mt-5">
-                    <blockquote cite={sources[t.platform].href} className="text-[15px] leading-relaxed text-fg">
+                    <blockquote cite={t.href ?? sources[t.platform].href} className="text-[15px] leading-relaxed text-fg">
                       <p>{t.text}</p>
                     </blockquote>
                     <figcaption className="mt-3 text-sm text-fg-muted">
@@ -71,7 +121,7 @@ export function Community() {
 
                   {t.reply && (
                     <figure className="mt-5 border-l border-brand-violet/40 pl-4">
-                      <blockquote cite={sources[t.platform].href} className="text-sm leading-relaxed text-fg-muted">
+                      <blockquote cite={t.href ?? sources[t.platform].href} className="text-sm leading-relaxed text-fg-muted">
                         <p>
                           <Inline text={t.reply} />
                         </p>
@@ -82,7 +132,7 @@ export function Community() {
 
                   <div className="mt-auto pt-6">
                     <ExternalLink
-                      href={sources[t.platform].href}
+                      href={t.href ?? sources[t.platform].href}
                       className="inline-flex items-center gap-1 text-[13px] text-fg-subtle hover:text-fg"
                     >
                       View on {platformName[t.platform]} <ArrowUpRight className="size-3.5" />
