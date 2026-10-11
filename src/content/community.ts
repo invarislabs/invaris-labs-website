@@ -20,29 +20,6 @@ export const sources = {
 
 export type Platform = keyof typeof sources;
 
-/**
- * A post that resonated, shown above the carousel. Engagement numbers are a
- * snapshot: update them (and `asOf`) together, never one without the other.
- */
-export const highlight = {
-  href: "https://x.com/arunimastwt/status/2108714123060281473",
-  author: { name: "Arunima Chaudhuri", handle: "@arunimastwt" },
-  postedOn: "10 Oct 2026",
-  text: [
-    "The scariest AI agent attack? One where nothing gets hacked.",
-    "No stolen credentials. No broken permissions.",
-    "Just an AI agent using tools it's already allowed to access — to do something it shouldn't.",
-    "That's what we're testing with AgentSec.",
-  ],
-  asOf: "11 Oct 2026",
-  stats: [
-    { label: "Bookmarks", value: "31", emphasis: true },
-    { label: "Views", value: "1,576" },
-    { label: "Likes", value: "32" },
-    { label: "Reposts", value: "5" },
-  ],
-} as const;
-
 export type Thread = {
   platform: Platform;
   /** Short label for what the exchange is about. */
@@ -80,6 +57,24 @@ export const threads: readonly Thread[] = [
     text: "mcp attacks are basically confused deputy again, server trusts the client, client trusts the agent, agent gets owned. does it test permissions across that whole chain or just per tool",
     reply:
       "Across the chain. AgentSec 0.7 records who acted and who delegated (including MCP clientInfo), then checks that authority only narrows as it's handed down. A planner can't launder a forbidden call through an executor. Confused deputy is one of the test cases.",
+  },
+  {
+    platform: "x",
+    topic: "Names the call, not a banner",
+    author: { name: "剑的 AI 实验室", handle: "@swordBluesy" },
+    text: "Catching an agent doing something I never asked only counts if the report names the tool call. I will look for that call, not a warning banner.",
+    reply:
+      "Fully agree. Happy to have you try to break it. AgentSec reports the offending call itself, not a warning. If you find a case where it flags without naming the call, I’d treat that as a bug.",
+    href: "https://x.com/swordBluesy/status/2109297972219658649",
+  },
+  {
+    platform: "x",
+    topic: "Injection from pages & email",
+    author: { name: "Wyatt Brocato", handle: "@thewyattbrocato" },
+    text: "most of the nasty stuff doesn't come thru the chat box either, it's hidden in the page or email the agent reads mid-task. does it cover that?",
+    reply:
+      "Yep. Indirect injection and tool-output poisoning are their own attack categories, plus checks for untrusted content getting executed or used to leak private data. Anything a tool returns (page, email) is untrusted. Dedicated inbox/browser pack is next.",
+    href: "https://x.com/thewyattbrocato/status/2109312921746698488",
   },
   {
     platform: "hashnode",

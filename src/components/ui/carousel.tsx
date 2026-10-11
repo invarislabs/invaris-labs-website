@@ -95,7 +95,7 @@ export function Carousel({ slides, label }: { slides: ReactNode[]; label: string
               onClick={() => goTo(i)}
               aria-label={`Go to item ${i + 1}`}
               aria-current={i === active ? "true" : undefined}
-              className="group flex size-6 items-center justify-center"
+              className="group hidden size-6 items-center justify-center sm:flex"
             >
               <span
                 className={cx(
@@ -105,7 +105,7 @@ export function Carousel({ slides, label }: { slides: ReactNode[]; label: string
               />
             </button>
           ))}
-          <span className="ml-2 font-mono text-[11px] text-fg-subtle" aria-live="polite">
+          <span className="font-mono text-[11px] text-fg-subtle sm:ml-2" aria-live="polite">
             {String(active + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
           </span>
         </div>
