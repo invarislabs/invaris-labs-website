@@ -82,6 +82,24 @@ export const threads: readonly Thread[] = [
       "Across the chain. AgentSec 0.7 records who acted and who delegated (including MCP clientInfo), then checks that authority only narrows as it's handed down. A planner can't launder a forbidden call through an executor. Confused deputy is one of the test cases.",
   },
   {
+    platform: "x",
+    topic: "Names the call, not a banner",
+    author: { name: "剑的 AI 实验室", handle: "@swordBluesy" },
+    text: "Catching an agent doing something I never asked only counts if the report names the tool call. I will look for that call, not a warning banner.",
+    reply:
+      "Fully agree. Happy to have you try to break it. AgentSec reports the offending call itself, not a warning. If you find a case where it flags without naming the call, I’d treat that as a bug.",
+    href: "https://x.com/swordBluesy/status/2109297972219658649",
+  },
+  {
+    platform: "x",
+    topic: "Injection from pages & email",
+    author: { name: "Wyatt Brocato", handle: "@thewyattbrocato" },
+    text: "most of the nasty stuff doesn't come thru the chat box either, it's hidden in the page or email the agent reads mid-task. does it cover that?",
+    reply:
+      "Yep. Indirect injection and tool-output poisoning are their own attack categories, plus checks for untrusted content getting executed or used to leak private data. Anything a tool returns (page, email) is untrusted. Dedicated inbox/browser pack is next.",
+    href: "https://x.com/thewyattbrocato/status/2109312921746698488",
+  },
+  {
     platform: "hashnode",
     topic: "Not observable ≠ pass",
     author: { name: "Salman Parvez" },
