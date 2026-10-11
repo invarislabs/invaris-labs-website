@@ -20,29 +20,6 @@ export const sources = {
 
 export type Platform = keyof typeof sources;
 
-/**
- * A post that resonated, shown above the carousel. Engagement numbers are a
- * snapshot: update them (and `asOf`) together, never one without the other.
- */
-export const highlight = {
-  href: "https://x.com/arunimastwt/status/2108714123060281473",
-  author: { name: "Arunima Chaudhuri", handle: "@arunimastwt" },
-  postedOn: "10 Oct 2026",
-  text: [
-    "The scariest AI agent attack? One where nothing gets hacked.",
-    "No stolen credentials. No broken permissions.",
-    "Just an AI agent using tools it's already allowed to access — to do something it shouldn't.",
-    "That's what we're testing with AgentSec.",
-  ],
-  asOf: "11 Oct 2026",
-  stats: [
-    { label: "Bookmarks", value: "31", emphasis: true },
-    { label: "Views", value: "1,576" },
-    { label: "Likes", value: "32" },
-    { label: "Reposts", value: "5" },
-  ],
-} as const;
-
 export type Thread = {
   platform: Platform;
   /** Short label for what the exchange is about. */
