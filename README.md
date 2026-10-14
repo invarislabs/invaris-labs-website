@@ -113,3 +113,11 @@ The page uses semantic landmarks, a skip link, visible focus states, keyboard-op
 - [AgentSec](https://github.com/invarislabs/invaris-agentsec)
 - [AgentAuth](https://github.com/invarislabs/agent-auth)
 - [Writing by Arunima Chaudhuri](https://arunima-chaudhuri.hashnode.dev)
+
+## Contributing
+
+Contributions are welcome. By opening a pull request you agree to the [Contributor License Agreement](CLA.md).
+
+## License
+
+The source code is licensed under the [Apache License 2.0](LICENSE). The Invaris Labs name, logo and the other brand assets are trademarks of Invaris Labs and are not covered by that license; see [NOTICE](NOTICE) for details, including third-party fonts and quoted community content.
