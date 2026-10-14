@@ -30,6 +30,19 @@ const products = [
     repo: links.agentauth.repo,
     repoLabel: "invarislabs/agent-auth",
   },
+  {
+    id: "dashboard",
+    index: "03",
+    name: "AgentSec Dashboard",
+    role: "REVIEW",
+    accent: "text-brand-blue",
+    question: "What did each run find, and what changed?",
+    summary:
+      "The hosted home for AgentSec reports. Upload report.json from CI or your machine and see every run with findings, evidence, traces, history and run-to-run comparison.",
+    meta: ["Python", "Apache-2.0", "Free at launch · self-hostable"],
+    repo: links.dashboard.repo,
+    repoLabel: "invarislabs/invaris-agentsec-dashboard",
+  },
 ] as const;
 
 export function Products() {
@@ -41,18 +54,18 @@ export function Products() {
           label="Products"
           title={
             <>
-              Two open-source projects for agents <br className="hidden sm:block" />
+              Three open-source projects for agents <br className="hidden sm:block" />
               that act with real authority.
             </>
           }
-          lead="One tests how an agent behaves under attack. The other gives it a verifiable identity and bounds what it is allowed to do."
+          lead="AgentSec tests how an agent behaves under attack, and the AgentSec Dashboard keeps every run's findings and history in one place. AgentAuth gives the agent a verifiable identity and bounds what it is allowed to do."
         />
 
-        <ul className="mt-14 grid gap-4 lg:grid-cols-2">
+        <ul className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {products.map((p, i) => (
             <li
               key={p.id}
-              className="reveal group relative flex flex-col rounded-2xl border border-line bg-gradient-to-b from-ink-900 to-ink-950 p-6 transition-colors hover:border-line-strong sm:p-8"
+              className="reveal group relative flex flex-col rounded-2xl md:last:col-span-2 lg:last:col-span-1 border border-line bg-gradient-to-b from-ink-900 to-ink-950 p-6 transition-colors hover:border-line-strong sm:p-8"
               style={{ ["--reveal-delay" as string]: `${i * 90}ms` }}
             >
               <div className="flex items-start justify-between gap-4">
@@ -66,14 +79,14 @@ export function Products() {
               </div>
               <p className="mt-6 text-lg font-medium text-fg">{p.question}</p>
               <p className="mt-3 leading-relaxed text-fg-muted">{p.summary}</p>
-              <ul className="mt-6 flex flex-wrap gap-2" aria-label={`${p.name} at a glance`}>
+              <ul className="mb-8 mt-6 flex flex-wrap gap-2" aria-label={`${p.name} at a glance`}>
                 {p.meta.map((m) => (
                   <li key={m} className="rounded-md bg-ink-800/70 px-2 py-1 font-mono text-[11px] text-fg-muted">
                     {m}
                   </li>
                 ))}
               </ul>
-              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-line pt-5 text-sm">
+              <div className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-line pt-5 text-sm">
                 <Link href={`#${p.id}`} className="inline-flex items-center gap-1.5 font-medium text-fg hover:text-white">
                   How {p.name} works <ArrowRight className="size-3.5" />
                 </Link>

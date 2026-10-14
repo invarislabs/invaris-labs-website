@@ -30,6 +30,19 @@ const repos = [
       { label: "Threat model", href: links.agentauth.threatModel },
     ],
   },
+  {
+    name: "invarislabs/invaris-agentsec-dashboard",
+    href: links.dashboard.repo,
+    description:
+      "The hosted dashboard for AgentSec reports: every run of every agent in one place, with findings and their evidence, full traces, history across runs, and what changed between any two runs. Self-hostable with Docker.",
+    meta: ["Python", "Apache-2.0"],
+    install: "docker compose up --build",
+    actions: [
+      { label: "Issues", href: links.dashboard.issues },
+      { label: "Run locally", href: links.dashboard.runLocally },
+      { label: "Deploy for free", href: links.dashboard.deployFree },
+    ],
+  },
 ] as const;
 
 const areas = [
@@ -56,11 +69,11 @@ export function OpenSource() {
           lead="Security infrastructure should be inspectable. Explore the code, try the tools against your own agents, open issues, contribute, and star the repositories if they're useful."
         />
 
-        <ul className="mt-14 grid gap-4 lg:grid-cols-2">
+        <ul className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {repos.map((r, i) => (
             <li
               key={r.name}
-              className="reveal flex flex-col rounded-2xl border border-line bg-ink-950/90 p-6 sm:p-8"
+              className="reveal flex flex-col rounded-2xl border border-line bg-ink-950/90 p-6 sm:p-8 md:last:col-span-2 lg:last:col-span-1"
               style={{ ["--reveal-delay" as string]: `${i * 90}ms` }}
             >
               <div className="flex items-center gap-3">
@@ -101,7 +114,7 @@ export function OpenSource() {
           <div>
             <h3 className="text-lg font-semibold text-fg">Where AgentSec welcomes contributions</h3>
             <p className="mt-2 text-sm leading-relaxed text-fg-muted">
-              Both projects are under active development. If you&apos;re building an agent and want to be an early
+              All three projects are under active development. If you&apos;re building an agent and want to be an early
               design partner, open a discussion or{" "}
               <a href={links.email} className="text-fg underline decoration-line-strong underline-offset-4 hover:decoration-fg">
                 get in touch
