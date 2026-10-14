@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import { links } from "@/lib/site";
 import {
-  freeLimits,
   pipeline,
   runDocker,
   runLocally,
@@ -162,7 +161,7 @@ export function Dashboard() {
           </p>
         </div>
 
-        {/* Security + plan */}
+        {/* Security */}
         <div className="mt-24 grid gap-12 lg:grid-cols-[1.25fr_1fr]">
           <div>
             <SubHeading id="dashboard-security" kicker="Security">
@@ -181,45 +180,12 @@ export function Dashboard() {
                 </li>
               ))}
             </ul>
-          </div>
-          <div>
-            <SubHeading id="dashboard-plan" kicker="Pricing">
-              Free at launch, open source, self-hostable.
-            </SubHeading>
-            <p className="reveal mt-5 leading-relaxed text-fg-muted">
-              Everything in the repository is free and Apache-2.0. Run it with Docker on any container host with
-              Postgres, or deploy it at no cost on Render and Neon. A few premium features will be added later;
-              those will be paid and kept private.
-            </p>
-            <div className="reveal mt-6 overflow-hidden rounded-xl border border-line">
-              <table className="w-full text-left text-sm">
-                <caption className="sr-only">Free plan limits</caption>
-                <thead className="bg-ink-900/70">
-                  <tr className="font-mono text-[11px] uppercase tracking-[0.12em] text-fg-subtle">
-                    <th scope="col" className="px-4 py-3 font-normal">Free plan</th>
-                    <th scope="col" className="px-4 py-3 text-right font-normal">Default</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-line">
-                  {freeLimits.map(([k, v]) => (
-                    <tr key={k}>
-                      <th scope="row" className="px-4 py-2.5 font-normal text-fg-muted">
-                        {k}
-                      </th>
-                      <td className="px-4 py-2.5 text-right font-mono text-[12.5px] text-fg">{v}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <div className="reveal mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm">
-              <ExternalLink href={links.dashboard.deployFree} className="font-medium text-fg hover:text-white">
-                Deploy for free ↗
-              </ExternalLink>
-              <ExternalLink href={links.dashboard.security} className="font-medium text-fg hover:text-white">
-                Security details ↗
-              </ExternalLink>
-            </div>
+            <ExternalLink
+              href={links.dashboard.security}
+              className="reveal mt-4 inline-block text-sm font-medium text-fg hover:text-white"
+            >
+              Security details ↗
+            </ExternalLink>
           </div>
         </div>
       </Container>

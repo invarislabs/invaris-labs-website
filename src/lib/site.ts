@@ -59,7 +59,6 @@ export const links = {
     runLocally: `${DASHBOARD}#run-it-locally`,
     deployFree: `${DASHBOARD}#deploy-for-free-render--neon`,
     security: `${DASHBOARD}#security`,
-    limits: `${DASHBOARD}#free-plan-limits`,
     issues: `${DASHBOARD}/issues`,
   },
 
