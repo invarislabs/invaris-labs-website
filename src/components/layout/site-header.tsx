@@ -45,7 +45,7 @@ export function SiteHeader() {
         buttonRef.current?.focus();
       }
     };
-    const onResize = () => window.innerWidth >= 768 && setOpen(false);
+    const onResize = () => window.innerWidth >= 1024 && setOpen(false);
     window.addEventListener("keydown", onKey);
     window.addEventListener("resize", onResize);
     return () => {
@@ -66,7 +66,7 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 w-full max-w-[1200px] items-center justify-between px-5 sm:px-8">
         <Brand />
 
-        <nav aria-label="Primary" className="hidden md:block">
+        <nav aria-label="Primary" className="hidden lg:block">
           <ul className="flex items-center gap-1">
             {nav.map((item) => (
               <li key={item.href}>
@@ -93,7 +93,7 @@ export function SiteHeader() {
         <button
           ref={buttonRef}
           type="button"
-          className="inline-flex size-10 items-center justify-center rounded-lg text-fg-muted hover:text-fg md:hidden"
+          className="inline-flex size-10 items-center justify-center rounded-lg text-fg-muted hover:text-fg lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           onClick={() => setOpen((v) => !v)}
@@ -107,7 +107,7 @@ export function SiteHeader() {
         id="mobile-nav"
         aria-label="Primary"
         hidden={!open}
-        className="border-t border-line bg-ink-950/95 md:hidden"
+        className="border-t border-line bg-ink-950/95 lg:hidden"
       >
         <ul className="mx-auto flex max-w-[1200px] flex-col px-5 py-3">
           {nav.map((item) => (

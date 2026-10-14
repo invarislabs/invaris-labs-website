@@ -35,7 +35,8 @@ export function Founder() {
               Arunima Chaudhuri
             </h2>
             <p className="mt-4 leading-relaxed text-fg-muted">
-              Arunima founded Invaris Labs and builds AgentSec and AgentAuth. She is a Research Engineer at
+              Arunima founded Invaris Labs and builds AgentSec, the AgentSec Dashboard and
+              AgentAuth. She is a Research Engineer at
               Status, previously interned at Status, Hyperledger and Solana Labs, and holds an M.Tech in Computer
               Science and Engineering from NIT Warangal (2025).
             </p>

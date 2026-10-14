@@ -15,7 +15,7 @@ export const site = {
   name: "Invaris Labs",
   tagline: "Security infrastructure for autonomous AI agents.",
   description:
-    "Invaris Labs builds open-source security infrastructure for autonomous AI agents: AgentSec for adversarial security and reliability testing, and AgentAuth for cryptographic agent identity and delegated authorization.",
+    "Invaris Labs builds open-source security infrastructure for autonomous AI agents: AgentSec for adversarial security and reliability testing, the AgentSec Dashboard for every run's findings, traces and history in one place, and AgentAuth for cryptographic agent identity and delegated authorization.",
   url: resolveSiteUrl(),
   /** True once a real public URL is configured (canonical tags are only emitted then). */
   hasPublicUrl: Boolean(process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_PROJECT_PRODUCTION_URL),
@@ -23,6 +23,7 @@ export const site = {
 
 const AGENTSEC = "https://github.com/invarislabs/invaris-agentsec";
 const AGENTAUTH = "https://github.com/invarislabs/agent-auth";
+const DASHBOARD = "https://github.com/invarislabs/invaris-agentsec-dashboard";
 
 export const links = {
   githubOrg: "https://github.com/invarislabs",
@@ -53,6 +54,16 @@ export const links = {
     issues: `${AGENTAUTH}/issues`,
   },
 
+  dashboard: {
+    repo: DASHBOARD,
+    runLocally: `${DASHBOARD}#run-it-locally`,
+    deployFree: `${DASHBOARD}#deploy-for-free-render--neon`,
+    security: `${DASHBOARD}#security`,
+    limits: `${DASHBOARD}#free-plan-limits`,
+    notBuilt: `${DASHBOARD}#not-built-yet`,
+    issues: `${DASHBOARD}/issues`,
+  },
+
   founder: {
     github: "https://github.com/tinniaru3005",
     linkedin: "https://www.linkedin.com/in/arunima-chaudhuri/",
@@ -65,6 +76,7 @@ export const nav = [
   { label: "Products", href: "#products" },
   { label: "AgentSec", href: "#agentsec" },
   { label: "AgentAuth", href: "#agentauth" },
+  { label: "Dashboard", href: "#dashboard" },
   { label: "Writing", href: "#writing" },
   { label: "Community", href: "#community" },
   { label: "About", href: "#about" },

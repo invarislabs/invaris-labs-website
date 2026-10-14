@@ -26,6 +26,8 @@ export const metadata: Metadata = {
     "delegated authorization",
     "AgentSec",
     "AgentAuth",
+    "AgentSec Dashboard",
+    "agent security reports",
     "open source",
   ],
   ...(site.hasPublicUrl ? { alternates: { canonical: "/" } } : {}),

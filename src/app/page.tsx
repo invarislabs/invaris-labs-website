@@ -5,6 +5,7 @@ import { Hero } from "@/components/sections/hero";
 import { Products } from "@/components/sections/products";
 import { AgentSec } from "@/components/sections/agentsec";
 import { AgentAuth } from "@/components/sections/agentauth";
+import { Dashboard } from "@/components/sections/dashboard";
 import { SecurityStack } from "@/components/sections/stack";
 import { Writing } from "@/components/sections/writing";
 import { Community } from "@/components/sections/community";
@@ -28,6 +29,7 @@ export default function Home() {
         <Products />
         <AgentSec />
         <AgentAuth />
+        <Dashboard />
         <SecurityStack />
         <Writing />
         <Community />

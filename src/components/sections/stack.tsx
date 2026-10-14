@@ -21,6 +21,16 @@ const layers = [
     text: "text-brand-cyan",
     href: "#agentauth",
   },
+  {
+    product: "AgentSec Dashboard",
+    role: "REVIEW",
+    question: "What did each run find, and what changed since the last one?",
+    when: "After every run · from CI or your machine",
+    body: "Every uploaded report in one place: findings with evidence, traces, history across runs, and verdict changes between any two runs.",
+    accent: "from-brand-blue/20",
+    text: "text-brand-blue",
+    href: "#dashboard",
+  },
 ] as const;
 
 export function SecurityStack() {
@@ -32,13 +42,13 @@ export function SecurityStack() {
             id="stack-title"
             label="The Invaris agent security stack"
             title="Behaviour and authority, secured separately."
-            lead="AgentSec determines whether an agent behaves safely. AgentAuth determines who the agent is and what it is allowed to do. Together they're the beginning of the Invaris agent security stack."
+            lead="AgentSec determines whether an agent behaves safely. AgentAuth determines who the agent is and what it is allowed to do. The AgentSec Dashboard keeps the evidence and history of every test run. Together they're the beginning of the Invaris agent security stack."
           />
 
           <figure aria-labelledby="stack-caption" className="reveal">
             <figcaption id="stack-caption" className="sr-only">
               The Invaris agent security stack: AgentSec for testing, AgentAuth for identity and authorization,
-              both around the agent.
+              and the AgentSec Dashboard for reviewing test runs, all around the agent.
             </figcaption>
             <div className="rounded-2xl border border-line bg-ink-950 p-3 sm:p-4">
               <div className="space-y-3">

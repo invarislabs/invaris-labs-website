@@ -123,7 +123,7 @@ export function Hero() {
               <span className="rounded-full bg-gradient-to-r from-brand-violet/30 to-brand-cyan/30 px-2 py-0.5 text-fg">
                 Open source
               </span>
-              AgentSec · AgentAuth
+              AgentSec · AgentAuth · Dashboard
             </p>
             <h1
               id="hero-title"

@@ -8,6 +8,7 @@ const columns = [
     items: [
       { label: "AgentSec on GitHub", href: links.agentsec.repo, external: true },
       { label: "AgentAuth on GitHub", href: links.agentauth.repo, external: true },
+      { label: "Dashboard on GitHub", href: links.dashboard.repo, external: true },
       { label: "AgentSec docs", href: links.agentsec.docs, external: true },
       { label: "AgentAuth protocol", href: links.agentauth.protocol, external: true },
     ],
