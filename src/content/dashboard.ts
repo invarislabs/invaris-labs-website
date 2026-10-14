@@ -98,11 +98,3 @@ export const freeLimits = [
   ["Largest report (uncompressed)", "25 MB"],
   ["Active upload tokens per project", "10"],
 ] as const;
-
-export const notBuiltYet = [
-  "Team members and roles",
-  "Organization accounts",
-  "Upload rate limiting",
-  "Object storage for very large reports",
-  "Email notifications",
-];

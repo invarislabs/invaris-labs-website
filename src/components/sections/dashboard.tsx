@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import { links } from "@/lib/site";
 import {
   freeLimits,
-  notBuiltYet,
   pipeline,
   runDocker,
   runLocally,
@@ -222,17 +221,6 @@ export function Dashboard() {
               </ExternalLink>
             </div>
           </div>
-        </div>
-
-        {/* Status */}
-        <div className="reveal mt-12 flex flex-col gap-4 rounded-xl border border-line bg-ink-900/50 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
-          <p className="text-sm leading-relaxed text-fg-muted">
-            <span className="mr-2 rounded bg-ink-800 px-1.5 py-0.5 font-mono text-[11px] text-fg">Not built yet</span>
-            {notBuiltYet.join(", ")}. Today a project&apos;s runs are visible only to its owner.
-          </p>
-          <ExternalLink href={links.dashboard.issues} className="shrink-0 text-sm font-medium text-fg hover:text-white">
-            Open an issue ↗
-          </ExternalLink>
         </div>
       </Container>
     </section>
