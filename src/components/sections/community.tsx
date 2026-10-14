@@ -2,9 +2,37 @@ import { sources, threads, type Platform } from "@/content/community";
 import { ArrowUpRight, XIcon } from "@/components/ui/icons";
 import { Inline } from "@/components/ui/inline";
 import { Carousel } from "@/components/ui/carousel";
+import { Expandable } from "@/components/ui/expandable";
 import { Container, ExternalLink, SectionHeader } from "@/components/ui/primitives";
 
 const platformName: Record<Platform, string> = { x: "X", hashnode: "Hashnode" };
+
+/** Paragraphs separated by a blank line; a paragraph of "- " lines becomes a list. */
+function RichText({ text }: { text: string }) {
+  return (
+    <div className="space-y-3">
+      {text.split("\n\n").map((block, i) => {
+        const lines = block.split("\n");
+        if (lines.every((l) => l.startsWith("- "))) {
+          return (
+            <ul key={i} className="list-disc space-y-1.5 pl-4 marker:text-fg-subtle">
+              {lines.map((l) => (
+                <li key={l}>
+                  <Inline text={l.slice(2)} />
+                </li>
+              ))}
+            </ul>
+          );
+        }
+        return (
+          <p key={i}>
+            <Inline text={block} />
+          </p>
+        );
+      })}
+    </div>
+  );
+}
 
 function PlatformBadge({ platform }: { platform: Platform }) {
   return (
@@ -53,8 +81,8 @@ export function Community() {
         <div className="reveal mt-14">
           <Carousel
             label="Community questions about AgentSec"
-            slides={threads.map((t) => (
-              <article key={t.author.name} className="flex w-full flex-col rounded-2xl border border-line bg-ink-900/40 p-6 sm:p-7">
+            slides={threads.map((t, i) => (
+              <article key={t.href ?? `${t.author.name}-${i}`} className="flex w-full flex-col rounded-2xl border border-line bg-ink-900/40 p-6 sm:p-7">
                   <div className="flex items-center justify-between gap-3">
                     <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-brand-cyan/90">{t.topic}</p>
                     <PlatformBadge platform={t.platform} />
@@ -73,9 +101,9 @@ export function Community() {
                   {t.reply && (
                     <figure className="mt-5 border-l border-brand-violet/40 pl-4">
                       <blockquote cite={t.href ?? sources[t.platform].href} className="text-sm leading-relaxed text-fg-muted">
-                        <p>
-                          <Inline text={t.reply} />
-                        </p>
+                        <Expandable>
+                          <RichText text={t.reply} />
+                        </Expandable>
                       </blockquote>
                       <figcaption className="mt-2 font-mono text-[11px] text-fg-subtle">Arunima Chaudhuri · reply</figcaption>
                     </figure>
