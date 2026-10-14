@@ -162,31 +162,29 @@ export function Dashboard() {
         </div>
 
         {/* Security */}
-        <div className="mt-24 grid gap-12 lg:grid-cols-[1.25fr_1fr]">
-          <div>
-            <SubHeading id="dashboard-security" kicker="Security">
-              Built to display hostile reports.
-            </SubHeading>
-            <ul className="reveal mt-8 divide-y divide-line rounded-xl border border-line">
-              {securityPoints.map(([point, detail]) => (
-                <li key={point} className="flex gap-3 p-4">
-                  <Check className="mt-0.5 size-4 shrink-0 text-ok" />
-                  <div>
-                    <p className="text-sm text-fg">{point}</p>
-                    <p className="mt-0.5 text-[13px] text-fg-subtle">
-                      <Inline text={detail} />
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <ExternalLink
-              href={links.dashboard.security}
-              className="reveal mt-4 inline-block text-sm font-medium text-fg hover:text-white"
-            >
-              Security details ↗
-            </ExternalLink>
-          </div>
+        <div className="mt-24">
+          <SubHeading id="dashboard-security" kicker="Security">
+            Built to display hostile reports.
+          </SubHeading>
+          <ul className="reveal mt-10 grid gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-2">
+            {securityPoints.map(([point, detail]) => (
+              <li key={point} className="flex gap-3 bg-ink-950 p-5">
+                <Check className="mt-0.5 size-4 shrink-0 text-ok" />
+                <div>
+                  <p className="text-sm text-fg">{point}</p>
+                  <p className="mt-1 text-[13px] leading-relaxed text-fg-subtle">
+                    <Inline text={detail} />
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <ExternalLink
+            href={links.dashboard.security}
+            className="reveal mt-4 inline-block text-sm font-medium text-fg hover:text-white"
+          >
+            Security details ↗
+          </ExternalLink>
         </div>
       </Container>
     </section>
