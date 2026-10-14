@@ -1,0 +1,53 @@
+Invaris Labs website
+Copyright 2026 Invaris Labs
+
+This product is licensed under the Apache License, Version 2.0 (the
+"License"); see the LICENSE file in this repository for the full license
+text. You may not use the source code in this repository except in
+compliance with the License.
+
+------------------------------------------------------------------------
+
+Brand assets
+
+The Invaris Labs logo and mark, and images derived from them
+(public/brand/, public/og.png, src/app/icon.png, src/app/apple-icon.png
+and src/app/favicon.ico), are trademarks of Invaris Labs. They are
+included so the site can be built and previewed, and are not licensed
+under the License above.
+
+------------------------------------------------------------------------
+
+Third-party fonts
+
+The site uses Geist Sans and Geist Mono (Copyright (c) 2023 Vercel, in
+collaboration with basement.studio), installed from the "geist" npm
+package and bundled into the built site. They are licensed under the SIL
+Open Font License, Version 1.1. The license text is included in that
+package (node_modules/geist/LICENSE.txt) and at https://openfontlicense.org.
+
+------------------------------------------------------------------------
+
+Third-party content
+
+The community comments quoted in src/content/community.ts are the words
+of their respective authors, reproduced with attribution and a link to
+where each was posted. Their copyright remains with those authors, and
+they are not licensed under the License above.
+
+------------------------------------------------------------------------
+
+Trademarks
+
+"Invaris", "Invaris Labs", "AgentSec", "Invaris AgentSec", "AgentAuth",
+and any associated logos are trademarks of Invaris Labs. The License
+above governs the source code in this repository; it does not grant any
+right to use these names, trademarks, service marks, or logos, except as
+required for reasonable and customary use in describing the origin of
+the software and for reproducing the content of this NOTICE file.
+
+In particular: a fork or derivative work of this website may not be
+distributed, published, or represented as the Invaris Labs website or as
+an official Invaris Labs project, and may not use Invaris Labs' name,
+trademarks, or logos in a way that suggests sponsorship, endorsement, or
+affiliation, without prior written permission from Invaris Labs.
