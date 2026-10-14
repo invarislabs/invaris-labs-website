@@ -1,8 +1,6 @@
 import type { ReactNode } from "react";
 import { links } from "@/lib/site";
 import {
-  freeLimits,
-  notBuiltYet,
   pipeline,
   runDocker,
   runLocally,
@@ -163,75 +161,29 @@ export function Dashboard() {
           </p>
         </div>
 
-        {/* Security + plan */}
-        <div className="mt-24 grid gap-12 lg:grid-cols-[1.25fr_1fr]">
-          <div>
-            <SubHeading id="dashboard-security" kicker="Security">
-              Built to display hostile reports.
-            </SubHeading>
-            <ul className="reveal mt-8 divide-y divide-line rounded-xl border border-line">
-              {securityPoints.map(([point, detail]) => (
-                <li key={point} className="flex gap-3 p-4">
-                  <Check className="mt-0.5 size-4 shrink-0 text-ok" />
-                  <div>
-                    <p className="text-sm text-fg">{point}</p>
-                    <p className="mt-0.5 text-[13px] text-fg-subtle">
-                      <Inline text={detail} />
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <SubHeading id="dashboard-plan" kicker="Pricing">
-              Free at launch, open source, self-hostable.
-            </SubHeading>
-            <p className="reveal mt-5 leading-relaxed text-fg-muted">
-              Everything in the repository is free and Apache-2.0. Run it with Docker on any container host with
-              Postgres, or deploy it at no cost on Render and Neon. A few premium features will be added later;
-              those will be paid and kept private.
-            </p>
-            <div className="reveal mt-6 overflow-hidden rounded-xl border border-line">
-              <table className="w-full text-left text-sm">
-                <caption className="sr-only">Free plan limits</caption>
-                <thead className="bg-ink-900/70">
-                  <tr className="font-mono text-[11px] uppercase tracking-[0.12em] text-fg-subtle">
-                    <th scope="col" className="px-4 py-3 font-normal">Free plan</th>
-                    <th scope="col" className="px-4 py-3 text-right font-normal">Default</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-line">
-                  {freeLimits.map(([k, v]) => (
-                    <tr key={k}>
-                      <th scope="row" className="px-4 py-2.5 font-normal text-fg-muted">
-                        {k}
-                      </th>
-                      <td className="px-4 py-2.5 text-right font-mono text-[12.5px] text-fg">{v}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <div className="reveal mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm">
-              <ExternalLink href={links.dashboard.deployFree} className="font-medium text-fg hover:text-white">
-                Deploy for free ↗
-              </ExternalLink>
-              <ExternalLink href={links.dashboard.security} className="font-medium text-fg hover:text-white">
-                Security details ↗
-              </ExternalLink>
-            </div>
-          </div>
-        </div>
-
-        {/* Status */}
-        <div className="reveal mt-12 flex flex-col gap-4 rounded-xl border border-line bg-ink-900/50 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
-          <p className="text-sm leading-relaxed text-fg-muted">
-            <span className="mr-2 rounded bg-ink-800 px-1.5 py-0.5 font-mono text-[11px] text-fg">Not built yet</span>
-            {notBuiltYet.join(", ")}. Today a project&apos;s runs are visible only to its owner.
-          </p>
-          <ExternalLink href={links.dashboard.issues} className="shrink-0 text-sm font-medium text-fg hover:text-white">
-            Open an issue ↗
+        {/* Security */}
+        <div className="mt-24">
+          <SubHeading id="dashboard-security" kicker="Security">
+            Built to display hostile reports.
+          </SubHeading>
+          <ul className="reveal mt-10 grid gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-2">
+            {securityPoints.map(([point, detail]) => (
+              <li key={point} className="flex gap-3 bg-ink-950 p-5">
+                <Check className="mt-0.5 size-4 shrink-0 text-ok" />
+                <div>
+                  <p className="text-sm text-fg">{point}</p>
+                  <p className="mt-1 text-[13px] leading-relaxed text-fg-subtle">
+                    <Inline text={detail} />
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <ExternalLink
+            href={links.dashboard.security}
+            className="reveal mt-4 inline-block text-sm font-medium text-fg hover:text-white"
+          >
+            Security details ↗
           </ExternalLink>
         </div>
       </Container>

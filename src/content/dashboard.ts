@@ -89,20 +89,3 @@ export const securityPoints = [
   ["Gzip bombs are refused", "Uploads may be gzip-compressed; the size limit is enforced after decompression."],
   ["Production refuses weak config", "It won't start with a weak `SECRET_KEY`, with development sign-in enabled, or without GitHub OAuth."],
 ] as const;
-
-/** Free plan defaults, from `app/plans.py` via the README. */
-export const freeLimits = [
-  ["Projects per account", "10"],
-  ["Runs kept per project", "500"],
-  ["Retention", "90 days"],
-  ["Largest report (uncompressed)", "25 MB"],
-  ["Active upload tokens per project", "10"],
-] as const;
-
-export const notBuiltYet = [
-  "Team members and roles",
-  "Organization accounts",
-  "Upload rate limiting",
-  "Object storage for very large reports",
-  "Email notifications",
-];
