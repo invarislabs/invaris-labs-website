@@ -6,12 +6,13 @@
 
 Source for the [Invaris Labs](https://github.com/invarislabs) website. Invaris Labs builds open-source security infrastructure for autonomous AI agents.
 
-The site is one statically exported page that presents both projects:
+The site is one statically exported page that presents all three projects:
 
 | Project | What it does | Repository |
 |---|---|---|
 | **AgentSec** | Adversarial security and reliability testing for AI agents | [invarislabs/invaris-agentsec](https://github.com/invarislabs/invaris-agentsec) |
 | **AgentAuth** | Cryptographic identity and delegated authorization for agents | [invarislabs/agent-auth](https://github.com/invarislabs/agent-auth) |
+| **AgentSec Dashboard** | Hosted dashboard for AgentSec reports: runs, findings, traces, history and comparisons | [invarislabs/invaris-agentsec-dashboard](https://github.com/invarislabs/invaris-agentsec-dashboard) |
 
 ## Quick start
 
@@ -64,13 +65,14 @@ Most changes don't touch layout code:
 | Links (GitHub, socials, docs, contact) | `src/lib/site.ts` |
 | AgentSec commands, terminal output, policy, check categories | `src/content/agentsec.ts` |
 | AgentAuth flow, limits, comparison table, code snippets | `src/content/agentauth.ts` |
+| Dashboard pipeline, views, security points, plan limits, snippets | `src/content/dashboard.ts` |
 | Articles in the Writing section | `src/content/writing.ts` |
 | Page title, description, social card text | `src/app/layout.tsx` and `public/og.png` |
 | Colours, fonts, motion | the `@theme` block in `src/app/globals.css` |
 
 **Adding an article:** add an object (`kind`, `title`, `description`, `topics`, `href`) to the top of `articles` in `src/content/writing.ts`, so the newest comes first. Write the description from the article itself. The grid is two columns, so an even number of articles fills it cleanly.
 
-**Accuracy:** product claims, commands and snippets on the site are taken from the AgentSec and AgentAuth READMEs. Check new copy against those READMEs so the site never describes a feature that isn't built.
+**Accuracy:** product claims, commands and snippets on the site are taken from the AgentSec, AgentAuth and AgentSec Dashboard READMEs. Check new copy against those READMEs so the site never describes a feature that isn't built.
 
 ## Project structure
 
@@ -86,9 +88,10 @@ src/
   components/
     layout/             header (with mobile menu) and footer
     sections/           one file per section: hero, products, agentsec,
-                        agentauth, stack, writing, about, founder, open-source
+                        agentauth, dashboard, stack, writing, community,
+                        about, founder, open-source
     ui/                 buttons, code blocks and tabs, icons, client helpers
-  content/              AgentSec and AgentAuth copy and snippets, and the article list
+  content/              product copy and snippets, the article list and community quotes
   lib/
     site.ts             site constants and every outbound link
     highlight.tsx       small server-side syntax highlighter
@@ -112,6 +115,7 @@ The page uses semantic landmarks, a skip link, visible focus states, keyboard-op
 
 - [AgentSec](https://github.com/invarislabs/invaris-agentsec)
 - [AgentAuth](https://github.com/invarislabs/agent-auth)
+- [AgentSec Dashboard](https://github.com/invarislabs/invaris-agentsec-dashboard)
 - [Writing by Arunima Chaudhuri](https://arunima-chaudhuri.hashnode.dev)
 
 ## Contributing
