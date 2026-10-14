@@ -26,7 +26,10 @@ export type Thread = {
   topic: string;
   author: { name: string; handle?: string };
   text: string;
-  /** Arunima's reply, if the exchange includes one worth showing. */
+  /**
+   * Arunima's reply, if the exchange includes one worth showing. Separate
+   * paragraphs with a blank line; lines starting with "- " render as a list.
+   */
   reply?: string;
   /** Direct link to this exchange, if it lives outside the platform's main thread. */
   href?: string;
@@ -51,12 +54,30 @@ export const threads: readonly Thread[] = [
     href: "https://x.com/animesh_infosec/status/2108920682344227060",
   },
   {
+    platform: "hashnode",
+    topic: "Inconclusive ≠ pass",
+    author: { name: "Kartik N V J K" },
+    text: "The read_inbox trace is the scariest kind of green: the poisoned body was never fetched because the agent never called open_email, and it still counted as a pass. I've seen the same thing in my own evals where a RAG agent never retrieved the adversarial doc and the score looked like resistance. Splitting that into inconclusive feels right. How do you keep teams from reading a pile of inconclusives as passes on dashboards?",
+    reply:
+      "Agreed, a run that never fetched the poisoned body is the scariest kind of green. A few rules, all in one shared module so the CLI, compare and both dashboards can’t drift apart:\n\n- The finding rate is calculated over tested scenarios only. If nothing was tested, it’s null, not 0%.\n- Coverage (tested / total) sits right next to it, so “0 findings, 20% coverage” reads as “we barely measured,” not “safe.”\n- A run with inconclusive scenarios is never labelled “all passed,” and the CLI prints a warning that N scenarios were inconclusive, not passed.\n- In compare, a finding is never called “fixed” if that scenario was inconclusive in the newer run. Not reaching the poisoned doc doesn’t count as a fix.\n\nIf you’d like to try it on your RAG evals, I’d love to know whether the delivery tracking catches your case: github.com/invarislabs/invaris-agentsec",
+    href: "https://hashnode.com/posts/the-agent-never-opened-the-email-engineering-test-verdicts-that-know-what-the-agent-actually-saw/6acd2d8da159f761e244e51b/comment/6ace618946d7036803872ec7",
+  },
+  {
     platform: "x",
     topic: "Multi-agent delegation",
     author: { name: "Harley Lewis Foote", handle: "@harleyfoote_" },
     text: "mcp attacks are basically confused deputy again, server trusts the client, client trusts the agent, agent gets owned. does it test permissions across that whole chain or just per tool",
     reply:
       "Across the chain. AgentSec 0.7 records who acted and who delegated (including MCP clientInfo), then checks that authority only narrows as it's handed down. A planner can't launder a forbidden call through an executor. Confused deputy is one of the test cases.",
+  },
+  {
+    platform: "hashnode",
+    topic: "Exposure vs. ordering",
+    author: { name: "Adam Lewis" },
+    text: "Exposure tracking and causal ordering both have to line up before the inconclusive status can be attached to anything. Exposure tracking gets you the first half and causal ordering the second. Can the two disagree, and what does the harness report when they do? If the ordering is reconstructed from the agent's own logs, the verdict inherits whatever the agent decided to record, which is the same trust problem the verdict is meant to solve.",
+    reply:
+      "Good question. In the default setup they can’t disagree, because they come from the same place. AgentSec runs the simulated tools itself, so it is the one that serves the poisoned email. Exposure is the harness’s own record of the tool result that carried the injection, and every event gets one sequence number from the harness. A finding needs a goal-matching call with a higher sequence number than delivery, and calls before delivery don’t count. Nothing is rebuilt from the agent’s logs.\n\nYour concern does apply to agents that run their own tools and report them back to us. Then the trace is the agent’s account, and the verdict inherits whatever it chose to record. Those events are flagged `executed_by_agent` in the report, but flagging isn’t verification. The real fix is observing independently, below the agent: for example, logging network egress per test case. That’s on the roadmap.",
+    href: "https://hashnode.com/posts/the-agent-never-opened-the-email-engineering-test-verdicts-that-know-what-the-agent-actually-saw/6acd2d8da159f761e244e51b/comment/6ace98180cb76c6fa8f2a8de",
   },
   {
     platform: "x",
@@ -75,6 +96,15 @@ export const threads: readonly Thread[] = [
     reply:
       "Yep. Indirect injection and tool-output poisoning are their own attack categories, plus checks for untrusted content getting executed or used to leak private data. Anything a tool returns (page, email) is untrusted. Dedicated inbox/browser pack is next.",
     href: "https://x.com/thewyattbrocato/status/2109312921746698488",
+  },
+  {
+    platform: "hashnode",
+    topic: "Null, not 0.0",
+    author: { name: "Salman Parvez" },
+    text: "Giving \"not measured\" its own value all the way to the last consumer is the part I'd copy. A finding rate of null reads as no measurement, where 0.0 reads as perfect. We label figures the same way at ML Systems up in Rhode Island: measured, modeled, or aspirational.",
+    reply:
+      "Thanks Salman, that’s exactly the reasoning. A 0.0 that really means “we never checked” is worse than no number, because it looks like proof. Your measured / modeled / aspirational split is a nice way to put it, and I like that it makes the confidence visible right next to the figure.\n\nAgentSec is open source if you’d like to try it: GitHub. If you have agents in your stack at ML Systems, I’d love to hear what it catches and what it misses. And if you find it useful, a star helps more people find it.",
+    href: "https://hashnode.com/posts/the-agent-never-opened-the-email-engineering-test-verdicts-that-know-what-the-agent-actually-saw/6acd2d8da159f761e244e51b/comment/6acd578b52d15945e868bb8f",
   },
   {
     platform: "hashnode",
