@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     "agent security reports",
     "open source",
   ],
-  ...(site.hasPublicUrl ? { alternates: { canonical: "/" } } : {}),
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: "/",

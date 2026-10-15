@@ -4,11 +4,11 @@
  * organisation page, or the founder's public profiles.
  */
 
+/** The production address. `NEXT_PUBLIC_SITE_URL` overrides it, e.g. for a staging build. */
+const PRODUCTION_URL = "https://www.invarislabs.com";
+
 function resolveSiteUrl(): string {
-  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
-  if (process.env.VERCEL_PROJECT_PRODUCTION_URL)
-    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
-  return "http://localhost:3000";
+  return (process.env.NEXT_PUBLIC_SITE_URL || PRODUCTION_URL).replace(/\/+$/, "");
 }
 
 export const site = {
@@ -17,8 +17,6 @@ export const site = {
   description:
     "Invaris Labs builds open-source security infrastructure for autonomous AI agents: AgentSec for adversarial security and reliability testing, the AgentSec Dashboard for every run's findings, traces and history in one place, and AgentAuth for cryptographic agent identity and delegated authorization.",
   url: resolveSiteUrl(),
-  /** True once a real public URL is configured (canonical tags are only emitted then). */
-  hasPublicUrl: Boolean(process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_PROJECT_PRODUCTION_URL),
 } as const;
 
 const AGENTSEC = "https://github.com/invarislabs/invaris-agentsec";
