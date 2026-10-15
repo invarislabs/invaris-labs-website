@@ -3,6 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "license": "Apache-2.0",
+  "homepage": "https://www.invarislabs.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/invarislabs/invaris-labs-website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/invarislabs/invaris-labs-website/issues"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
