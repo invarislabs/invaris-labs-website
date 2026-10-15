@@ -4,7 +4,7 @@
 
 # Invaris Labs website
 
-Source for the [Invaris Labs](https://github.com/invarislabs) website. Invaris Labs builds open-source security infrastructure for autonomous AI agents.
+Source for the [Invaris Labs](https://github.com/invarislabs) website, live at **[www.invarislabs.com](https://www.invarislabs.com)**. Invaris Labs builds open-source security infrastructure for autonomous AI agents.
 
 The site is one statically exported page that presents all three projects:
 
@@ -46,7 +46,9 @@ Before opening a pull request, run `npm run lint && npm run typecheck && npm run
 
 `next.config.ts` sets `output: "export"`, so `npm run build` produces plain HTML, CSS and JS in `out/`. That folder can be served by any static host (GitHub Pages, Cloudflare Pages, Netlify, Vercel, S3).
 
-- Set `NEXT_PUBLIC_SITE_URL` at build time (see below) so social previews and the sitemap use the real domain.
+The live site runs on **Cloudflare Pages** (project `invaris-labs`), built from `main` on every push with the build command `npm run build` and output directory `out`. It is served at `https://www.invarislabs.com`; `invarislabs.com` redirects there with a Cloudflare Redirect Rule, and `invaris-labs.pages.dev` still serves the same build.
+
+- The production address is built in (`src/lib/site.ts`). Set `NEXT_PUBLIC_SITE_URL` only to build for a different address, such as a staging domain.
 - If the site is served from a subpath, for example `https://invarislabs.github.io/invaris-labs-website/`, also set `basePath` in `next.config.ts`. With a custom domain it isn't needed.
 - Image optimisation is turned off (`images.unoptimized`) because a static export has no server to run it. The images are already small and pre-sized.
 
@@ -54,7 +56,8 @@ Before opening a pull request, run `npm run lint && npm run typecheck && npm run
 
 | Variable | Purpose |
 |---|---|
-| `NEXT_PUBLIC_SITE_URL` | Public origin, e.g. `https://example.com`. Used for absolute OpenGraph URLs, the canonical tag, `robots.txt` and `sitemap.xml`. On Vercel, `VERCEL_PROJECT_PRODUCTION_URL` is used automatically if this is unset. The canonical tag is left out until one of them is set. |
+| `NEXT_PUBLIC_SITE_URL` | Optional. Public origin without a trailing slash, e.g. `https://staging.example.com`. Used for absolute OpenGraph URLs, the canonical tag, `robots.txt` and `sitemap.xml`. Defaults to `https://www.invarislabs.com`. |
+| `NODE_VERSION` | Set to `22` on Cloudflare Pages so the build uses a supported Node.js version. |
 
 ## Editing content
 
