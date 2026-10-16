@@ -1,0 +1,54 @@
+# Invaris Labs
+
+> Invaris Labs builds open-source security infrastructure for autonomous AI agents: AgentSec for adversarial security and reliability testing, the AgentSec Dashboard for keeping every test run and its evidence in one place, and AgentAuth for cryptographic agent identity and delegated authorization.
+
+Website: https://www.invarislabs.com/
+GitHub: https://github.com/invarislabs
+Founder: Arunima Chaudhuri (https://github.com/tinniaru3005)
+
+AI agents read untrusted data, call tools, keep memory, delegate work to other agents and take real actions. A single poisoned document or tool response can make an agent leak secrets, call a tool it shouldn't, or do something that can't be undone. Invaris Labs builds tools to test agents for that behaviour and to give them verifiable identity and limited authority.
+
+## AgentSec: adversarial security testing for AI agents
+
+- Repository: https://github.com/invarislabs/invaris-agentsec
+- Install: `pip install invaris-agentsec`
+- Documentation: https://github.com/invarislabs/invaris-agentsec/blob/main/docs/README.md
+- License: Apache-2.0
+
+AgentSec is an open-source Python framework that runs stateful attack scenarios against a complete agent workflow (the LLM, retrieval, memory, MCP servers, tools and sensitive actions), records the execution trace, and checks every step against a security policy declared in `agentsec.yaml`.
+
+It tests for direct and indirect prompt injection, tool-output and MCP-server poisoning, unsafe retrieved documents, memory poisoning, unauthorized tool use, actions the task never authorized, dangerous tool chains, identity and session confusion, multi-agent privilege abuse, secret and sensitive-data leakage, loops and budget overruns, deceptive action reports, and behavioural regressions. Findings map to the OWASP Top 10 for Agentic Applications (ASI01-ASI10).
+
+- MCP security: `agentsec mcp scan` inspects an MCP server's tools, resources and prompts without calling them and flags poisoned tool descriptions, hidden characters, tool shadowing, homoglyph tool names, misleading annotations, forbidden or unlisted tools and rug pulls. `agentsec test --mcp-listen` delivers attack scenarios through MCP tool results. Docs: https://github.com/invarislabs/invaris-agentsec/blob/main/docs/mcp-testing.md
+- CI: exit code 1 on findings and 2 on configuration errors, `--seed` for reproducible runs, `agentsec compare` across pull requests, a packaged GitHub Action, and SARIF for GitHub Code Scanning. Docs: https://github.com/invarislabs/invaris-agentsec/blob/main/docs/github-actions.md
+- Integrations: OpenAI-compatible HTTP agents, LangChain and LangGraph (LangChainAdapter), and in-process agents (CallableAdapter); Python API and pytest plugin.
+- Reports: terminal, JSON, HTML, Markdown and SARIF 2.1.0, with secrets masked.
+- Local by default: traces stay on your machine unless you upload a report.
+
+## AgentSec Dashboard: every AgentSec run in one place
+
+- Repository: https://github.com/invarislabs/invaris-agentsec-dashboard
+- License: Apache-2.0
+
+A hosted, open-source dashboard for AgentSec reports. Teams upload the `report.json` AgentSec writes from CI or their machines (`agentsec upload`, or the AgentSec GitHub Action) and see every run of every agent: findings with their evidence, full traces, history across runs, and what changed between any two runs. Scenarios whose attack never reached the agent are marked inconclusive and never counted as passed. Free at launch and self-hostable with Docker.
+
+## AgentAuth: identity and delegated authority for AI agents
+
+- Repository: https://github.com/invarislabs/agent-auth
+- Protocol: https://github.com/invarislabs/agent-auth/blob/main/docs/protocol.md
+- Threat model: https://github.com/invarislabs/agent-auth/blob/main/docs/threat-model.md
+
+AgentAuth gives each agent a self-certifying DID backed by an Ed25519 keypair. The agent signs every request instead of sending an API key or bearer token; signatures are bound to the method, path, body, audience, a timestamp and a single-use nonce. Short-lived capability grants say what an agent may do and can be delegated to sub-agents, but only ever narrow. Spend, rate, use and resource limits are enforced across the whole delegation chain, revocation cascades, and an optional human or organization controller holds a kill switch. Tooling: CLI, Python SDK and FastAPI integration.
+
+## Writing
+
+- [What Does a Passing Agent Security Test Actually Prove?](https://arunima-chaudhuri.hashnode.dev/what-does-a-passing-agent-security-test-actually-prove): five ways an agent can pass a security test without resisting anything.
+- [Allowed Isn't Authorized](https://arunima-chaudhuri.hashnode.dev/allowed-isn-t-authorized-testing-what-your-ai-agent-does-with-the-permissions-it-already-has): testing what an AI agent does with the permissions it already has.
+- [AgentSec 101: How to Stop Your AI Agent From Going Rogue](https://arunima-chaudhuri.hashnode.dev/agentsec-101-how-to-stop-your-ai-agent-from-going-rogue-a-beginner-to-pro-guide): a beginner-to-pro walkthrough.
+- [I Asked My Coding Agent for a Yes or No. It Made a Commit.](https://arunima-chaudhuri.hashnode.dev/i-asked-my-coding-agent-for-a-yes-or-no-it-made-a-commit): the origin story behind AgentSec.
+
+## Contact
+
+- Email: arunimachaudhuri2020@gmail.com
+- X: https://x.com/InvarisLabs
+- LinkedIn: https://www.linkedin.com/company/invarislabs
