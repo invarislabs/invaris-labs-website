@@ -12,7 +12,7 @@ const products = [
     accent: "text-brand-violet",
     question: "Does the agent behave safely?",
     summary:
-      "Open-source adversarial security and reliability testing. Runs stateful attack scenarios against complete agent workflows and verifies your policy holds throughout.",
+      "Open-source adversarial testing for AI agents. Runs stateful attack scenarios, from prompt injection to MCP poisoning, against complete agent workflows and verifies your policy holds throughout.",
     meta: ["Python", "Apache-2.0", "CLI · pytest · GitHub Action"],
     repo: links.agentsec.repo,
     repoLabel: "invarislabs/invaris-agentsec",
@@ -25,7 +25,7 @@ const products = [
     accent: "text-brand-cyan",
     question: "Who is the agent, and what may it do?",
     summary:
-      "Cryptographic identity and delegated authority. Self-certifying DIDs, signed requests instead of API keys, and scoped grants that only narrow as they're delegated.",
+      "Cryptographic identity and delegated authority for AI agents. Self-certifying DIDs, signed requests instead of API keys, and scoped grants that only narrow as they're delegated.",
     meta: ["Python", "v0.3", "CLI · SDK · FastAPI"],
     repo: links.agentauth.repo,
     repoLabel: "invarislabs/agent-auth",

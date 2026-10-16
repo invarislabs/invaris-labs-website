@@ -160,7 +160,7 @@ export function AgentAuth() {
             index="02"
             label="AgentAuth"
             title="Give every agent an identity. Control what it can do."
-            lead="AgentAuth gives each agent a self-certifying DID backed by an Ed25519 keypair. The agent proves who it is by signing every request. Capability grants say what it may do, and anyone can verify all of it without trusting the registry."
+            lead="AgentAuth gives each AI agent a self-certifying DID backed by an Ed25519 keypair. The agent proves who it is by signing every request. Capability grants say what it may do, and anyone can verify all of it without trusting the registry."
           />
           <div className="reveal flex flex-wrap gap-3 lg:justify-end">
             <ButtonLink href={links.agentauth.repo} external icon="github">

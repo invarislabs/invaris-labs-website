@@ -1,0 +1,41 @@
+# Cloudflare Pages response headers. Copied to out/_headers by `npm run build`.
+# https://developers.cloudflare.com/pages/configuration/headers/
+
+# Keep the *.pages.dev copies (production and preview deployments) out of
+# search results, so only https://www.invarislabs.com/ is indexed.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+
+# React Server Component payloads the client router fetches. They're data, not
+# pages, so keep them out of search results.
+/index.txt
+  X-Robots-Tag: noindex
+
+/__next.*
+  X-Robots-Tag: noindex
+
+/_not-found*
+  X-Robots-Tag: noindex
+
+# Build output with content hashes in the file names never changes in place.
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Brand images aren't hashed: cache for a day, then revalidate in the background.
+/brand/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/og.png
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8

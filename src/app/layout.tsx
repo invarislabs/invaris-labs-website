@@ -3,71 +3,72 @@ import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { site } from "@/lib/site";
+import { canonicalUrl, keywords, ogImage, pageDescription, pageTitle, socialDescription } from "@/lib/seo";
 import "./globals.css";
+
+/**
+ * Optional search-engine verification tokens, read at build time. Prefer
+ * verifying the domain in Google Search Console with a DNS record (Cloudflare
+ * can add it); these exist for the URL-prefix method or Bing Webmaster Tools.
+ */
+const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
+const bingVerification = process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION;
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name}: ${site.tagline}`,
-    template: `%s · ${site.name}`,
+    default: pageTitle,
+    template: `%s | ${site.name}`,
   },
-  description: site.description,
+  description: pageDescription,
   applicationName: site.name,
   authors: [{ name: "Arunima Chaudhuri", url: "https://github.com/tinniaru3005" }],
   creator: site.name,
-  keywords: [
-    "AI agent security",
-    "agent security testing",
-    "agent security research",
-    "AI agent benchmarks",
-    "prompt injection",
-    "MCP security",
-    "agent identity",
-    "delegated authorization",
-    "AgentSec",
-    "AgentAuth",
-    "AgentSec Dashboard",
-    "agent security reports",
-    "open source",
-  ],
-  alternates: { canonical: "/" },
+  publisher: site.name,
+  category: "technology",
+  keywords,
+  alternates: { canonical: canonicalUrl },
   openGraph: {
     type: "website",
-    url: "/",
+    url: canonicalUrl,
     siteName: site.name,
-    title: site.name,
-    description: site.description,
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: `${site.name}: ${site.tagline}` }],
+    title: `${site.name}: ${site.tagline}`,
+    description: socialDescription,
+    images: [{ ...ogImage, type: "image/png" }],
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
     site: "@InvarisLabs",
-    title: site.name,
-    description: site.description,
-    images: ["/og.png"],
+    creator: "@arunimastwt",
+    title: `${site.name}: ${site.tagline}`,
+    description: socialDescription,
+    images: [{ url: ogImage.url, alt: ogImage.alt }],
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  ...(googleVerification || bingVerification
+    ? {
+        verification: {
+          ...(googleVerification ? { google: googleVerification } : {}),
+          ...(bingVerification ? { other: { "msvalidate.01": bingVerification } } : {}),
+        },
+      }
+    : {}),
 };
 
 export const viewport: Viewport = {
   themeColor: "#000614",
   colorScheme: "dark",
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: site.name,
-  url: site.url,
-  logo: `${site.url}/brand/invaris-labs-logo.png`,
-  description: site.description,
-  founder: { "@type": "Person", name: "Arunima Chaudhuri" },
-  sameAs: [
-    "https://github.com/invarislabs",
-    "https://x.com/InvarisLabs",
-    "https://www.linkedin.com/company/invarislabs",
-  ],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
@@ -82,10 +83,6 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       <head>
         {/* Enables entrance animations only when JS runs, so content is never hidden without it. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
-        />
       </head>
       <body className="min-h-dvh">{children}</body>
     </html>
