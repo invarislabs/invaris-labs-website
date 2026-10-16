@@ -9,6 +9,7 @@ import { Dashboard } from "@/components/sections/dashboard";
 import { SecurityStack } from "@/components/sections/stack";
 import { Writing } from "@/components/sections/writing";
 import { Community } from "@/components/sections/community";
+import { Faq } from "@/components/sections/faq";
 import { About } from "@/components/sections/about";
 import { Founder } from "@/components/sections/founder";
 import { OpenSource } from "@/components/sections/open-source";
@@ -33,6 +34,7 @@ export default function Home() {
         <SecurityStack />
         <Writing />
         <Community />
+        <Faq />
         <About />
         <Founder />
         <OpenSource />
