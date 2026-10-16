@@ -87,13 +87,23 @@ export function ButtonLink({
   );
 }
 
-export function SectionLabel({ index, children }: { index?: string; children: ReactNode }) {
+export function SectionLabel({
+  index,
+  children,
+  as: Tag = "p",
+}: {
+  index?: string;
+  children: ReactNode;
+  /** "span" when the label sits inside a heading. */
+  as?: "p" | "span";
+}) {
   return (
-    <p className="eyebrow flex items-center gap-3">
-      {index && <span className="text-brand-cyan/80">{index}</span>}
+    <Tag className="eyebrow flex items-center gap-3">
+      {/* Drawn with CSS so the number isn't part of the heading text. */}
+      {index && <span aria-hidden data-index={index} className="text-brand-cyan/80 before:content-[attr(data-index)]" />}
       <span aria-hidden className="h-px w-6 bg-line-strong" />
       <span>{children}</span>
-    </p>
+    </Tag>
   );
 }
 
@@ -116,12 +126,16 @@ export function SectionHeader({
 }) {
   return (
     <header className={cx("reveal max-w-3xl", className)}>
-      <SectionLabel index={index}>{label}</SectionLabel>
-      <h2
-        id={id}
-        className="mt-5 text-balance text-3xl font-semibold leading-[1.1] tracking-[-0.025em] text-fg sm:text-4xl lg:text-[2.75rem]"
-      >
-        {title}
+      {/* The label is part of the heading, so the outline reads "AgentSec: Test agents before…"
+          rather than a slogan with no subject. It looks the same as a separate label. */}
+      <h2 id={id}>
+        <SectionLabel as="span" index={index}>
+          {label}
+        </SectionLabel>
+        <span className="sr-only">: </span>
+        <span className="mt-5 block text-balance text-3xl font-semibold leading-[1.1] tracking-[-0.025em] text-fg sm:text-4xl lg:text-[2.75rem]">
+          {title}
+        </span>
       </h2>
       {lead && <p className="mt-5 text-pretty text-base leading-relaxed text-fg-muted sm:text-lg">{lead}</p>}
       {children}
