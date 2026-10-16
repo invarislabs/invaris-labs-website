@@ -39,7 +39,7 @@ export function AgentSec() {
             index="01"
             label="AgentSec"
             title="Test agents before they reach production."
-            lead="AgentSec is an open-source framework for adversarial security and reliability testing. It runs stateful attack scenarios against complete agent workflows (LLMs, retrieval, memory, MCP servers, tools and sensitive actions), records the full execution trace, and checks that your security policy holds from the first step to the last."
+            lead="AgentSec is an open-source framework for adversarial security and reliability testing of AI agents. It runs stateful attack scenarios, from prompt injection and tool poisoning to unauthorized actions, against complete agent workflows (LLMs, retrieval, memory, MCP servers, tools and sensitive actions), records the full execution trace, and checks that your security policy holds from the first step to the last."
           />
           <div className="reveal flex flex-col gap-4 lg:items-end">
             <div className="flex flex-wrap gap-3">
@@ -140,9 +140,12 @@ export function AgentSec() {
             <div aria-hidden className="hairline-gradient absolute inset-x-0 top-0 h-px" />
             <div className="grid gap-10 p-6 sm:p-10 lg:grid-cols-[1fr_1.1fr_1fr]">
               <div>
-                <p className="eyebrow text-[11px]">MCP security</p>
-                <h3 className="mt-3 text-2xl font-semibold tracking-tight text-fg">
-                  Scan the servers. Attack through them.
+                <h3>
+                  <span className="eyebrow block text-[11px]">MCP security</span>
+                  <span className="sr-only">: </span>
+                  <span className="mt-3 block text-2xl font-semibold tracking-tight text-fg">
+                    Scan the servers. Attack through them.
+                  </span>
                 </h3>
                 <p className="mt-4 leading-relaxed text-fg-muted">
                   MCP servers hand agents tool descriptions and tool results, both of which can carry
