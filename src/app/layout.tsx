@@ -71,21 +71,6 @@ export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: site.name,
-  url: site.url,
-  logo: `${site.url}/brand/invaris-labs-logo.png`,
-  description: site.description,
-  founder: { "@type": "Person", name: "Arunima Chaudhuri" },
-  sameAs: [
-    "https://github.com/invarislabs",
-    "https://x.com/InvarisLabs",
-    "https://www.linkedin.com/company/invarislabs",
-  ],
-};
-
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     // The inline script below adds a `js` class before React hydrates, so the
@@ -98,10 +83,6 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       <head>
         {/* Enables entrance animations only when JS runs, so content is never hidden without it. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
-        />
       </head>
       <body className="min-h-dvh">{children}</body>
     </html>

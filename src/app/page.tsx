@@ -13,10 +13,13 @@ import { Faq } from "@/components/sections/faq";
 import { About } from "@/components/sections/about";
 import { Founder } from "@/components/sections/founder";
 import { OpenSource } from "@/components/sections/open-source";
+import { JsonLd } from "@/components/seo/json-ld";
+import { homeStructuredData } from "@/lib/structured-data";
 
 export default function Home() {
   return (
     <>
+      <JsonLd data={homeStructuredData} />
       <a
         href="#main"
         className="sr-only z-[100] rounded-md bg-fg px-4 py-2 text-sm font-medium text-ink-950 focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
