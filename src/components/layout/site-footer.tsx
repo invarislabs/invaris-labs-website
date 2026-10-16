@@ -16,6 +16,8 @@ const columns = [
   {
     title: "Invaris Labs",
     items: [
+      { label: "About", href: "#about", external: false },
+      { label: "FAQ", href: "#faq", external: false },
       { label: "Writing", href: links.founder.blog, external: true },
       { label: "GitHub", href: links.githubOrg, external: true },
       { label: "X", href: links.xOrg, external: true },
