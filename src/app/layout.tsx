@@ -3,51 +3,51 @@ import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { site } from "@/lib/site";
+import { canonicalUrl, keywords, ogImage, pageDescription, pageTitle, socialDescription } from "@/lib/seo";
 import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name}: ${site.tagline}`,
-    template: `%s · ${site.name}`,
+    default: pageTitle,
+    template: `%s | ${site.name}`,
   },
-  description: site.description,
+  description: pageDescription,
   applicationName: site.name,
   authors: [{ name: "Arunima Chaudhuri", url: "https://github.com/tinniaru3005" }],
   creator: site.name,
-  keywords: [
-    "AI agent security",
-    "agent security testing",
-    "agent security research",
-    "AI agent benchmarks",
-    "prompt injection",
-    "MCP security",
-    "agent identity",
-    "delegated authorization",
-    "AgentSec",
-    "AgentAuth",
-    "AgentSec Dashboard",
-    "agent security reports",
-    "open source",
-  ],
-  alternates: { canonical: "/" },
+  publisher: site.name,
+  category: "technology",
+  keywords,
+  alternates: { canonical: canonicalUrl },
   openGraph: {
     type: "website",
-    url: "/",
+    url: canonicalUrl,
     siteName: site.name,
-    title: site.name,
-    description: site.description,
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: `${site.name}: ${site.tagline}` }],
+    title: `${site.name}: ${site.tagline}`,
+    description: socialDescription,
+    images: [{ ...ogImage, type: "image/png" }],
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
     site: "@InvarisLabs",
-    title: site.name,
-    description: site.description,
-    images: ["/og.png"],
+    creator: "@arunimastwt",
+    title: `${site.name}: ${site.tagline}`,
+    description: socialDescription,
+    images: [{ url: ogImage.url, alt: ogImage.alt }],
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export const viewport: Viewport = {
