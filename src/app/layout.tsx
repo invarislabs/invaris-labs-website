@@ -6,6 +6,14 @@ import { site } from "@/lib/site";
 import { canonicalUrl, keywords, ogImage, pageDescription, pageTitle, socialDescription } from "@/lib/seo";
 import "./globals.css";
 
+/**
+ * Optional search-engine verification tokens, read at build time. Prefer
+ * verifying the domain in Google Search Console with a DNS record (Cloudflare
+ * can add it); these exist for the URL-prefix method or Bing Webmaster Tools.
+ */
+const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
+const bingVerification = process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION;
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
@@ -48,6 +56,14 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+  ...(googleVerification || bingVerification
+    ? {
+        verification: {
+          ...(googleVerification ? { google: googleVerification } : {}),
+          ...(bingVerification ? { other: { "msvalidate.01": bingVerification } } : {}),
+        },
+      }
+    : {}),
 };
 
 export const viewport: Viewport = {
