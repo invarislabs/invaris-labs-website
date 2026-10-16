@@ -38,12 +38,12 @@ export function SiteFooter() {
       <div aria-hidden className="hairline-gradient absolute inset-x-0 top-0 h-px opacity-60" />
       <div className="mx-auto grid w-full max-w-[1200px] gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[1.2fr_2fr]">
         <div>
-          {/* The full logo, unmodified; its own dark field blends into the page. */}
+          {/* The full logo (a 2x copy of public/brand/invaris-labs-logo.png); its own dark field blends into the page. */}
           <Image
-            src="/brand/invaris-labs-logo.png"
+            src="/brand/invaris-labs-logo-440.webp"
             alt="Invaris Labs"
-            width={877}
-            height={877}
+            width={440}
+            height={440}
             sizes="220px"
             className="-mb-8 -ml-7 -mt-10 h-auto w-[220px]"
           />

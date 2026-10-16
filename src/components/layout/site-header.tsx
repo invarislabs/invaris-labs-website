@@ -11,7 +11,7 @@ export function Brand({ className }: { className?: string }) {
   return (
     <Link href="#top" className={cx("group flex items-center gap-2.5", className)}>
       <Image
-        src="/brand/invaris-mark.png"
+        src="/brand/invaris-mark-64.png"
         alt=""
         width={32}
         height={32}
