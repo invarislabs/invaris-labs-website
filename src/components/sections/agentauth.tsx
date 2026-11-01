@@ -13,7 +13,7 @@ import {
   pyService,
   verificationChecks,
 } from "@/content/agentauth";
-import { CodeSamples } from "@/components/ui/code";
+import { CodeSamples, CommandLine } from "@/components/ui/code";
 import { Check, Cross } from "@/components/ui/icons";
 import { Inline } from "@/components/ui/inline";
 import { ButtonLink, Container, ExternalLink, SectionHeader } from "@/components/ui/primitives";
@@ -162,13 +162,16 @@ export function AgentAuth() {
             title="Give every agent an identity. Control what it can do."
             lead="AgentAuth gives each AI agent a self-certifying DID backed by an Ed25519 keypair. The agent proves who it is by signing every request. Capability grants say what it may do, and anyone can verify all of it without trusting the registry."
           />
-          <div className="reveal flex flex-wrap gap-3 lg:justify-end">
-            <ButtonLink href={links.agentauth.repo} external icon="github">
-              View AgentAuth on GitHub
-            </ButtonLink>
-            <ButtonLink href={links.agentauth.protocol} external variant="secondary">
-              Protocol spec
-            </ButtonLink>
+          <div className="reveal flex flex-col gap-4 lg:items-end">
+            <div className="flex flex-wrap gap-3">
+              <ButtonLink href={links.agentauth.repo} external icon="github">
+                View AgentAuth on GitHub
+              </ButtonLink>
+              <ButtonLink href={links.agentauth.protocol} external variant="secondary">
+                Protocol spec
+              </ButtonLink>
+            </div>
+            <CommandLine command="pip install invaris-agentauth" />
           </div>
         </div>
 
@@ -344,9 +347,11 @@ export function AgentAuth() {
         {/* Status */}
         <div className="reveal mt-12 flex flex-col gap-4 rounded-xl border border-line bg-ink-900/50 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
           <p className="text-sm leading-relaxed text-fg-muted">
-            <span className="mr-2 rounded bg-ink-800 px-1.5 py-0.5 font-mono text-[11px] text-fg">v0.3</span>
-            Shipped: identity (v0.1), delegated grants (v0.2), limits (v0.3). Known gaps, like registry
-            equivocation and the in-memory nonce cache, are documented in the threat model.
+            <span className="mr-2 rounded bg-ink-800 px-1.5 py-0.5 font-mono text-[11px] text-fg">v0.4</span>
+            Shipped: identity (v0.1), delegated grants (v0.2), limits (v0.3), and in v0.4 production hardening,
+            an internal security review with every finding fixed, and a TypeScript verifier that shares test
+            vectors with Python. It hasn&apos;t had an independent security audit yet; the threat model lists the
+            known gaps.
           </p>
           <div className="flex shrink-0 gap-4 text-sm">
             <ExternalLink href={links.agentauth.threatModel} className="font-medium text-fg hover:text-white">
