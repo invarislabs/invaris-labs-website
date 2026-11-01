@@ -121,15 +121,18 @@ httpx.post("https://tools.example.com/search", json={"q": "…"}, auth=summarize
 reg.revoke_grant(human, root.leaf.id)   # summarizer is cut off too`;
 
 export const pyService = `from agentauth import GrantVerifier, RegistryRevocationChecker, trust_principals
+from agentauth.backends.redis import RedisNonceCache, RedisUsageLedger
 from agentauth.integrations import fastapi_authorizer
 
 reg  = RegistryClient("https://registry.example.com")
 keys = RegistryKeyResolver(reg, ttl=30)
 require = fastapi_authorizer(
-    RequestVerifier(keys, audiences={"tools.example.com"}),
+    RequestVerifier(keys, audiences={"tools.example.com"},
+                    nonce_cache=RedisNonceCache(REDIS_URL)),       # shared by all replicas
     GrantVerifier(keys,
                   root_policy=trust_principals({ORG_DID: ["tools.*"]}),
-                  revoked=RegistryRevocationChecker(reg, ttl=5)),
+                  revoked=RegistryRevocationChecker(reg, ttl=5),
+                  ledger=RedisUsageLedger(REDIS_URL)),              # budgets shared by all replicas
 )
 
 @app.post("/search")
