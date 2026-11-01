@@ -26,7 +26,7 @@ const products = [
     question: "Who is the agent, and what may it do?",
     summary:
       "Cryptographic identity and delegated authority for AI agents. Self-certifying DIDs, signed requests instead of API keys, and scoped grants that only narrow as they're delegated.",
-    meta: ["Python", "v0.3", "CLI · SDK · FastAPI"],
+    meta: ["Python", "Apache-2.0", "v0.4", "CLI · SDK · FastAPI"],
     repo: links.agentauth.repo,
     repoLabel: "invarislabs/agent-auth",
   },

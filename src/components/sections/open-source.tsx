@@ -22,8 +22,8 @@ const repos = [
     href: links.agentauth.repo,
     description:
       "Cryptographic identity and delegated authority for autonomous AI agents: self-certifying DIDs, signed requests instead of API keys, and scoped delegation chains with budgets and cascading revocation.",
-    meta: ["Python", "v0.3"],
-    install: 'pip install -e ".[dev]"',
+    meta: ["Python", "Apache-2.0", "v0.4"],
+    install: "pip install invaris-agentauth",
     actions: [
       { label: "Issues", href: links.agentauth.issues },
       { label: "Architecture", href: links.agentauth.architecture },
