@@ -57,7 +57,7 @@ export const faqs: readonly Faq[] = [
     id: "what-is-agentauth",
     question: "What is AgentAuth?",
     answer:
-      "AgentAuth provides cryptographic identity and delegated authorization for AI agents. Each agent gets a self-certifying DID backed by an Ed25519 keypair and signs every request. Short-lived capability grants say what it may do; an agent can delegate a narrower grant to a sub-agent, and a service can verify the whole chain without trusting the registry.",
+      "AgentAuth provides cryptographic identity and delegated authorization for AI agents. Each agent gets a self-certifying DID backed by an Ed25519 keypair and signs every request. Short-lived capability grants say what it may do; an agent can delegate a narrower grant to a sub-agent, and a service can verify the whole chain without trusting the registry. Install it with `pip install invaris-agentauth`.",
   },
   {
     id: "api-keys",
@@ -75,7 +75,7 @@ export const faqs: readonly Faq[] = [
     id: "open-source",
     question: "Are the tools open source?",
     answer:
-      "Yes. AgentSec, AgentAuth and the AgentSec Dashboard are developed in the open on GitHub under the invarislabs organization. AgentSec and the AgentSec Dashboard are licensed under Apache-2.0.",
+      "Yes. AgentSec, AgentAuth and the AgentSec Dashboard are developed in the open on GitHub under the invarislabs organization. All three are licensed under Apache-2.0, and AgentSec and AgentAuth are published on PyPI as `invaris-agentsec` and `invaris-agentauth`.",
   },
 ];
 

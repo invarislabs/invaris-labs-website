@@ -11,7 +11,7 @@ AI agents read untrusted data, call tools, keep memory, delegate work to other a
 ## AgentSec: adversarial security testing for AI agents
 
 - Repository: https://github.com/invarislabs/invaris-agentsec
-- Install: `pip install invaris-agentsec`
+- Install: `pip install invaris-agentsec` (PyPI: https://pypi.org/project/invaris-agentsec/, Python 3.9+)
 - Documentation: https://github.com/invarislabs/invaris-agentsec/blob/main/docs/README.md
 - License: Apache-2.0
 
@@ -35,10 +35,12 @@ A hosted, open-source dashboard for AgentSec reports. Teams upload the `report.j
 ## AgentAuth: identity and delegated authority for AI agents
 
 - Repository: https://github.com/invarislabs/agent-auth
+- Install: `pip install invaris-agentauth` (PyPI: https://pypi.org/project/invaris-agentauth/, Python 3.10+); add the `[server]` extra for the registry
+- License: Apache-2.0
 - Protocol: https://github.com/invarislabs/agent-auth/blob/main/docs/protocol.md
 - Threat model: https://github.com/invarislabs/agent-auth/blob/main/docs/threat-model.md
 
-AgentAuth gives each agent a self-certifying DID backed by an Ed25519 keypair. The agent signs every request instead of sending an API key or bearer token; signatures are bound to the method, path, body, audience, a timestamp and a single-use nonce. Short-lived capability grants say what an agent may do and can be delegated to sub-agents, but only ever narrow. Spend, rate, use and resource limits are enforced across the whole delegation chain, revocation cascades, and an optional human or organization controller holds a kill switch. Tooling: CLI, Python SDK and FastAPI integration.
+AgentAuth gives each agent a self-certifying DID backed by an Ed25519 keypair. The agent signs every request instead of sending an API key or bearer token; signatures are bound to the method, path, body, audience, a timestamp and a single-use nonce. Short-lived capability grants say what an agent may do and can be delegated to sub-agents, but only ever narrow. Spend, rate, use and resource limits are enforced across the whole delegation chain, revocation cascades, and an optional human or organization controller holds a kill switch. Tooling: CLI, Python SDK, FastAPI integration, and a TypeScript verifier that shares test vectors with Python. Version 0.4 added production hardening and an internal security review with every finding fixed; it has not had an independent security audit yet.
 
 ## Writing
 
